@@ -4,9 +4,27 @@ This is the behavior code of the RoboCup Humanoid League team Hamburg Bit-Bots.
 It is divided into a behavior for the head and the body.
 Both are programmed using the dynamic_stack_decider package (https://github.com/bit-bots/dynamic_stack_decider).
 
+# TODO:
+* Ask about the inverse kinematics of the head motors --> whether to do the computation inside the head node
+* main.dsd does not contain KickBallStatic i.e. the robot does not kick ball --> need to talk about the low level motion implementation for msg passing
+* Need to wait after the action has finished --> whether to do this part in behavior node or motion control node
+* Retrieve the lua code for the FSM to add node of the the current tree
+* Complete the code of nodes which only execute simple logic
+
+# Package Usage
+1. bitbots_body_behavior
+2. bitbots_head_behavior
+3. bitbots_blackboard
+4. bitbots_stack_decider
+5. bitbots_msgs
+6. humanoid_league_msgs
+7. bio_ik_msgs
+8. bio_ik_service(in our case it may not be needed)
+
+
 # Node
 ## Body
-* Package: bitbots_behavior
+* Package: bitbots_body_behavior
 * Name: body_behavior
 * Type: body_behavior.py
 
@@ -48,6 +66,9 @@ Both are programmed using the dynamic_stack_decider package (https://github.com/
   * callback: blackboard.blackboard.robot_state_callback
 
 ## Head
+* Package: bitbots_head_behavior
+* Name: head_behavior
+* Type: head_node.py
 ### Publisher
 * position_publisher
   * topic: "/head_motor_goals"
